@@ -11,14 +11,14 @@ export class StudentService{
     constructor(private httpClient: HttpClient){}
 
     getAllStudents(): Observable<Student[]>{
-        return this.httpClient.get<Student[]>(`${environment.apiUrl}/all`)
+        return this.httpClient.get<Student[]>(`${environment.apiUrl}/university/all`)
     }
 
     addNewStudent(student: Student): Observable<Student>{
-        return this.httpClient.post<Student>(`${environment.apiUrl}/add`, student)
+        return this.httpClient.post<Student>(`${environment.apiUrl}/university/add`, student)
     }
 
     delete(studentId: number): Observable<string>{
-        return this.httpClient.delete<string>(`${environment.apiUrl}/delete/${studentId}`)
+        return this.httpClient.delete<string>(`${environment.apiUrl}/university/delete/${studentId}`)
     }
 }

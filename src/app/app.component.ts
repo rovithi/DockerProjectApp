@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import {MatTableModule} from '@angular/material/table';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { Student } from './interfaces/student.interface';
 import { StudentService } from './services/student.service';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 
 
@@ -15,39 +14,61 @@ import { StudentService } from './services/student.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   ELEMENT_DATA: Student[] = []
+  newStudentForm: FormGroup
   
   displayedColumns: string[] = ['id', 'name', 'surname', 'age', 'department', 'action']
   constructor(
-    private studentService: StudentService) { }
+    private studentService: StudentService,
+    private fb: FormBuilder) { }
 
-    ngOnInti(){
+    ngOnInit(){
+      this.newStudentForm = this.fb.group({
+        name: new FormControl(null),
+        surname: new FormControl(null),
+        age: new FormControl(null),
+        department: new FormControl(null)        
+      })
       this.studentService.getAllStudents().subscribe(result=>{
         this.ELEMENT_DATA = result
+      })
+
+    }
+
+    deleteStudent(element: Student){
+      this.studentService.delete(element.id).subscribe()
+    }
+
+
+    onSave(){
+      const newStudent = this.newStudentForm.value
+
+      this.studentService.addNewStudent(newStudent).subscribe(response=>{
+        this.ELEMENT_DATA = [...this.ELEMENT_DATA, newStudent]
       })
     }
 
 
-  /* openDialog(action,obj) {
-    obj.action = action;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
-      data:obj
-    });
+  //  openDialog(action,obj) {
+  //   obj.action = action;
+  //   const dialogRef = this.dialog.open(DialogBoxComponent, {
+  //     width: '250px',
+  //     data:obj
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result.event == 'Delete'){
-        this.deleteRowData(result.data);
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if(result.event == 'Delete'){
+  //       this.deleteRowData(result.data);
+  //     }
+  //   });
+  // }
 
-  deleteRowData(row_obj){
-    this.dataSource = this.dataSource.filter((value,key)=>{
-      return value.id != row_obj.id;
-    });
-  } */
+  // deleteRowData(row_obj){
+  //   this.dataSource = this.dataSource.filter((value,key)=>{
+  //     return value.id != row_obj.id;
+  //   });
+  // } 
 
 
 }
