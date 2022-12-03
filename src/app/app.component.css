@@ -1,0 +1,36 @@
+table {
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.add-button{
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 10px;
+    color: white;
+    background-color: limegreen;
+    border: 1px solid limegreen;
+    font-size: 22px;
+    margin-top: 33px;
+}
+.delete-button{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    border: 1px solid red;
+}
+.input-add-student{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid;
+    width: 15%;
+}
