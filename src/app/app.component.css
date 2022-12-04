@@ -14,6 +14,7 @@ table {
     border: 1px solid limegreen;
     font-size: 22px;
     margin-top: 33px;
+    cursor: pointer;
 }
 .delete-button{
     padding-top: 10px;
@@ -24,6 +25,7 @@ table {
     color: white;
     background-color: red;
     border: 1px solid red;
+    cursor: pointer;
 }
 .input-add-student{
     padding-top: 8px;
